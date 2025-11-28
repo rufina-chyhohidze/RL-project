@@ -1,4 +1,14 @@
-environment: "CartPole-v1"
-algorithm: "DQN"
-timesteps: 200000
+environment: "MountainCarContinuous-v0"
+algorithm: "PPO"
+timesteps: 300000
 checkpoint_freq: 10000
+num_trials: 3
+
+# Custom reward shaping parameters
+reward_scale: 1.0        # scale default reward
+step_penalty: 0.001      # small negative per step to encourage faster success
+
+# shaping based on state
+position_weight: 10.0    # reward being closer to the flag (position)
+velocity_weight: 0.5     # reward higher absolute velocity
+goal_position: 0.45     # goal x-position in MountainCarContinuous

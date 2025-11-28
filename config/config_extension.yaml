@@ -1,4 +1,7 @@
-environment: "CartPole-v1"
-algorithm: "DQN"
-timesteps: 200000
+environment: "MountainCarContinuous-v0"
+algorithm: "PPO"
+timesteps: 300000
 checkpoint_freq: 10000
+
+hyperparam_name: "learning_rate"
+hyperparam_values: [1e-4, 3e-4, 1e-3]
