@@ -30,7 +30,6 @@ def train_extension(cfg_path="config/config_extension.yaml"):
     os.makedirs("results/extension", exist_ok=True)
 
     for idx, val in enumerate(hyperparam_values):
-        # Make sure it's a float (handles both numeric and "1e-4" strings)
         val = float(val)
 
         env = gym.make(env_id)
