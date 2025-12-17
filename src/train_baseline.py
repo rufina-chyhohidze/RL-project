@@ -28,7 +28,6 @@ def train_baseline(cfg_path="config/config_baseline.yaml"):
     os.makedirs("results/baseline", exist_ok=True)
 
     for trial in range(num_trials):
-        # Create fresh environment for each trial
         env = gym.make(env_id)
 
         log_dir = f"logs/baseline/{algo_name}_trial{trial}"

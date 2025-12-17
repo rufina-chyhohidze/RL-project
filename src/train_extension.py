@@ -3,6 +3,8 @@ import gymnasium as gym
 from stable_baselines3 import PPO, DQN, A2C, SAC
 from stable_baselines3.common.callbacks import CheckpointCallback
 import os
+from custom_env_wrapper import CustomRewardWrapper
+
 
 
 ALGO_MAP = {
@@ -30,15 +32,21 @@ def train_extension(cfg_path="config/config_extension.yaml"):
     os.makedirs("results/extension", exist_ok=True)
 
     for idx, val in enumerate(hyperparam_values):
-        val = float(val)
+        if hyperparam_name in ["n_steps", "batch_size", "n_epochs"]:
+            val = int(val)
+        else:
+            val = float(val)
 
-        env = gym.make(env_id)
+        algo_kwargs = {hyperparam_name: val}
+
+        base_env = gym.make(env_id)
+        env = CustomRewardWrapper(base_env, cfg)
 
         log_dir = f"logs/extension/{algo_name}_{hyperparam_name}{idx}"
         checkpoint_dir = os.path.join(log_dir, "checkpoints")
         os.makedirs(checkpoint_dir, exist_ok=True)
 
-        algo_kwargs = {hyperparam_name: val}
+
 
         model = AlgoClass(
             "MlpPolicy",

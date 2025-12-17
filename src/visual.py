@@ -1,7 +1,7 @@
 import gymnasium as gym
 from stable_baselines3 import PPO
 
-model = PPO.load("results/custom_reward/PPO_trial2")
+model = PPO.load("results/extension/PPO_clip_range1")
 
 env = gym.make("MountainCarContinuous-v0", render_mode="human")
 

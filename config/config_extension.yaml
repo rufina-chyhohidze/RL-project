@@ -3,5 +3,17 @@ algorithm: "PPO"
 timesteps: 300000
 checkpoint_freq: 10000
 
-hyperparam_name: "learning_rate"
-hyperparam_values: [1e-4, 3e-4, 1e-3]
+hyperparam_name: "clip_range"
+hyperparam_values: [0.05, 0.1, 0.2] # fourth - the best result 0.05
+
+#hyperparam_name: "n_steps"
+#hyperparam_values: [512, 1024, 2048] - third - the best result 2048
+
+#hyperparam_name: "learning_rate"
+#hyperparam_values: [5e-5, 1e-4, 2e-4] second try - fail
+#hyperparam_values: [1e-4, 3e-4, 1e-3] first try, the best with 1e-4
+
+step_penalty: 0.0005
+pos_reward_weight: 1.0
+vel_reward_weight: 0.5
+goal_position: 0.45
